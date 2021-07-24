@@ -23,11 +23,11 @@ var music_preloads = {
 var key_change = 0
 
 var key_change_tint = [
-	preload("res://engine/images/tint-blue.png"),
-	preload("res://engine/images/tint-green.png"),
-	preload("res://engine/images/tint-yellow.png"),
-	preload("res://engine/images/tint-orange.png"),
-	preload("res://engine/images/tint-red.png")
+	"13000aff",
+	"1300ffc3",
+	"13e5ff00",
+	"13ff9500",
+	"13ff0000"
 ]
 
 ## Functionality
@@ -54,7 +54,7 @@ func add_scn_pth(scn) :
 	return "res://main/screens/"+scn+"/"+scn+".tscn"
 
 func add_mus_pth(mus):
-	return "res://main/music/"+mus+"/"+mus+".ogg"
+	return "res://main/music/"+mus+"/"+mus+".mp3"
 
 func add_mus_dat_pth(dat):
 	return "res://main/music/"+dat+"/"+dat+".dat"

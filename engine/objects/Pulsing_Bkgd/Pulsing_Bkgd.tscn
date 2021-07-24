@@ -30,8 +30,8 @@ __meta__ = {
 [node name="Purple" type="ColorRect" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 1614.0
-margin_bottom = 914.0
+margin_right = 1607.0
+margin_bottom = 907.0
 rect_min_size = Vector2( 1600, 900 )
 color = Color( 0.219608, 0.0901961, 0.196078, 1 )
 __meta__ = {

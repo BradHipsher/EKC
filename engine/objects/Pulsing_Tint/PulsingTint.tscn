@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://engine/objects/Pulsing_Tint/PulsingTint.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=6]
+resource_name = "pulse0"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.0392157, 1, 0.0745098 ), Color( 0, 0, 0, 0.164706 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "pulse1"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 1, 0.764706, 0.0745098 ), Color( 0, 0, 0, 0.164706 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "pulse2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.898039, 1, 0, 0.0745098 ), Color( 0, 0, 0, 0.164706 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "pulse3"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.584314, 0, 0.0745098 ), Color( 0, 0, 0, 0.164706 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "pulse4"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0.0745098 ), Color( 0, 0, 0, 0.164706 ) ]
+}
+
+[node name="PulsingTint" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.164706 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pulser" type="AnimationPlayer" parent="."]
+anims/pulse0 = SubResource( 6 )
+anims/pulse1 = SubResource( 2 )
+anims/pulse2 = SubResource( 3 )
+anims/pulse3 = SubResource( 4 )
+anims/pulse4 = SubResource( 5 )

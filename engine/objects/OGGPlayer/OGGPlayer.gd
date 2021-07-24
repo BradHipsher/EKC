@@ -11,7 +11,7 @@ var time_delay
 var time
 
 var song_name : String
-var sound_stream : AudioStreamOGGVorbis
+var sound_stream : AudioStreamMP3
 var bpm : float
 var offset : float 
 var step_map : Dictionary
