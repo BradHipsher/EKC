@@ -19,6 +19,17 @@ var music_preloads = {
 	}
 }
 
+## Key Change
+var key_change = 0
+
+var key_change_tint = [
+	preload("res://engine/images/tint-blue.png"),
+	preload("res://engine/images/tint-green.png"),
+	preload("res://engine/images/tint-yellow.png"),
+	preload("res://engine/images/tint-orange.png"),
+	preload("res://engine/images/tint-red.png")
+]
+
 ## Functionality
 func change_screen(scn, delay = 1.5):
 	var sd = load(add_obj_pth("Sound_Direct")).instance()

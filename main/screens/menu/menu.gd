@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	print("menu")
+	print("Menu")
 
 func _on_Button_pressed():
-	Global.change_screen("room")
+	Global.change_screen("Room")
