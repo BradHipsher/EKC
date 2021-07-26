@@ -19,6 +19,8 @@ var music_preloads = {
 	}
 }
 
+var mspb
+
 ## Key Change
 var key_change = 0
 

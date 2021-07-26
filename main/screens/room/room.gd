@@ -2,15 +2,11 @@ extends Node2D
 
 const tilemapPF = preload("res://engine/objects/TileMap/TileMap.tscn")
 const staticPF = preload("res://engine/objects/Statics/Static.tscn")
-const tintPF = preload("res://engine/objects/Pulsing_Tint/PulsingTint.tscn")
-const playerPF = preload("res://engine/objects/Player/Player.tscn")
 const shooterPF = preload("res://engine/objects/Shooter/Shooter.tscn")
-const stepperPF = preload("res://engine/objects/Stepper/Stepper.tscn")
+#const stepperPF = preload("res://engine/objects/Stepper/Stepper.tscn")
+const playerPF = preload("res://engine/objects/Player/Player.tscn")
+const tintPF = preload("res://engine/objects/Pulsing_Tint/PulsingTint.tscn")
 
-var sound 
-var sound_direct = preload("res://engine/objects/OGGPlayer/OGGPlayer.tscn")
-
-var song_name : String = "JazzLoop"
 
 var sMap = [
 	[0,0], 
@@ -72,10 +68,10 @@ var shooterMap = [
 
 var tileMap
 var statics
-var tint
-var player
 var entities
-var stepper
+#var stepper
+var player
+var tint
 
 func _ready():
 	tileMap = tilemapPF.instance()
@@ -85,28 +81,20 @@ func _ready():
 	add_child(statics)
 	loadStatics()
 	
-	tint = tintPF.instance()
-	add_child(tint)
+	entities = Node2D.new()
+	add_child(entities)
+	loadEntities()
+	
+#	stepper = stepperPF.instance()
+#	add_child(stepper)
 	
 	player = playerPF.instance()
 	player.position = Vector2(9*64+32,6*64+32)
 	add_child(player)
 	
-	entities = Node2D.new()
-	add_child(entities)
-	loadEntities()
+	tint = tintPF.instance()
+	add_child(tint)
 	
-	stepper = stepperPF.instance()
-	add_child(stepper)
-	
-	sound = sound_direct.instance()
-	sound.init(song_name)
-	sound.connect("pulse", self, "_on_OGGPlayer_pulse")
-	sound.connect("tick",self, "_on_OGGPlayer_tick")
-	sound.connect("track_info", self, "_on_OGGPlayer_track_signal")
-	add_child(sound)
-	print("sound.bpm: " + str(sound.bpm))
-
 func loadStatics():
 	for s in sMap:
 		var i = staticPF.instance()
@@ -121,17 +109,20 @@ func loadEntities():
 		i.position.y = s[1]*64 + 32
 		entities.add_child(i)
 
-func _on_OGGPlayer_pulse(beat_send, time_send):
-	get_node("Stepper").pulse(beat_send, time_send)
+func pulse(beat_send, time_send):
+#	stepper.pulse(beat_send, time_send)
 	tint.pulse()
 	for s in get_tree().get_nodes_in_group("shooter"):
 		s.pulse(beat_send, time_send)
 
-func _on_OGGPlayer_tick(beat_send, time_send):
-	get_node("Stepper").tick(beat_send, time_send)
+func tick(beat_send, time_send):
+#	stepper.tick(beat_send, time_send)
+	for t in get_tree().get_nodes_in_group("tickable"):
+		t.tick(beat_send, time_send)
 
-func _on_OGGPlayer_track_signal(song_name, mspb, off, sm):
-	get_node("Stepper").set_song(song_name, mspb, off, sm)
+func track_signal(song_name, mspb, off, sm):
+	pass
+#	stepper.set_song(song_name, mspb, off, sm)
 
 func _on_bullet_collide(contacted):
 	if contacted == player:

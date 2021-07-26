@@ -8,6 +8,7 @@ radius = 30.0
 
 [node name="Bullet" type="Area2D" groups=[
 "hazard",
+"tickable",
 ]]
 script = ExtResource( 2 )
 

@@ -2,6 +2,14 @@ extends Area2D
 
 var startTime
 var dir
+var startPos
+var roomParent
+
+const pxpb:float = 64.0 * 4.0 #px/beat
+
+func _ready():
+	roomParent = get_parent().get_parent()
+	startPos = position
 
 func _process(delta):
 	position.x += dir.x
@@ -23,3 +31,8 @@ func _on_Bullet_area_entered(area):
 	for a in get_tree().get_nodes_in_group("player"):
 		if area == a:
 			queue_free()
+
+func tick(beat, time):
+	var bpms = 1.0 / Global.mspb
+	position.x = startPos.x + (dir.x * pxpb *  bpms * 1000.0 * (time - startTime))
+	position.y = startPos.y + (dir.y * pxpb *  bpms * 1000.0 * (time - startTime))
