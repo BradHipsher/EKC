@@ -3,20 +3,29 @@ extends Area2D
 var buff = 0.1
 var tarPos
 var roomParent
+var input
 
 func _ready():
 	tarPos = position
 	roomParent = get_parent()
 
+func _process(delta):
+	input = true
+
 func _unhandled_key_input(event):
-	if event.is_action_pressed("Left"):
-		moveTween(-64,0)
-	if event.is_action_pressed("Right"):
-		moveTween(64,0)
-	if event.is_action_pressed("Up"):
-		moveTween(0,-64)
-	if event.is_action_pressed("Down"):
-		moveTween(0,64)
+	if input:
+		if event.is_action_pressed("Left"):
+			moveTween(-64,0)
+			input = false
+		if event.is_action_pressed("Right"):
+			moveTween(64,0)
+			input = false
+		if event.is_action_pressed("Up"):
+			moveTween(0,-64)
+			input = false
+		if event.is_action_pressed("Down"):
+			moveTween(0,64)
+			input = false
 
 func moveTween(dx, dy):
 	var tween = Tween.new()
