@@ -21,12 +21,15 @@ var next_level_name_map = {
 
 var curr_level_name
 
+var key_change = false
+
 var room
 
 func _ready():
 	Global.key_change = 0
 	
 	room = roomPF.instance()
+	room.init()
 	add_child(room)
 	
 	level_1 = sound_direct.instance()
@@ -54,8 +57,16 @@ func _ready():
 
 
 func nextRoom(dir):
+	var roomVec
+	if dir == "Left": roomVec = Vector2.LEFT
+	if dir == "Right": roomVec = Vector2.RIGHT
+	if dir == "Down": roomVec = Vector2.DOWN
+	if dir == "Up": roomVec = Vector2.UP
+	Global.rlMapIndex = Global.rlMapIndex + roomVec
+	
 	room.queue_free()
 	room = roomPF.instance()
+	room.init()
 	add_child(room)
 	if dir == "Left":
 		room.player.position = Vector2(18*64+32, 6*64+32)
@@ -71,12 +82,16 @@ func key_change():
 	Global.key_change = min(Global.key_change + 1, Global.key_change_tint.size() - 1)
 	
 	var level = level_name_map[curr_level_name]
+	var progress = level.get_playback_position()
 	#id new level
 	var new_level = level_name_map[next_level_name_map[curr_level_name]]
 	#stop playing level
 	level.stop()
 	#start playing new level
-	new_level.init(next_level_name_map[curr_level_name])
+	new_level.init(
+		next_level_name_map[curr_level_name],
+		progress * Global.music_preloads[curr_level_name]["bpm"] / Global.music_preloads[next_level_name_map[curr_level_name]]["bpm"] 
+	)
 	new_level.connect("pulse", self, "_on_OGGPlayer_pulse")
 	new_level.connect("tick",self, "_on_OGGPlayer_tick")
 	new_level.connect("track_info", self, "_on_OGGPlayer_track_signal")
@@ -89,6 +104,10 @@ func key_change():
 
 func _on_OGGPlayer_pulse(beat_send, time_send):
 	room.pulse(beat_send, time_send)
+	print(str([beat_send,time_send]))
+	if (key_change):
+		key_change()
+		key_change = false
 
 func _on_OGGPlayer_tick(beat_send, time_send):
 	room.tick(beat_send, time_send)
@@ -99,7 +118,7 @@ func _on_OGGPlayer_track_signal(song_name, mspb, off, sm):
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("dev1"):
-		key_change()
+		key_change = true
 
 
 func _on_exitToMenu_pressed():

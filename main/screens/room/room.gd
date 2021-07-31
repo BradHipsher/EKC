@@ -8,63 +8,8 @@ const playerPF = preload("res://engine/objects/Player/Player.tscn")
 const tintPF = preload("res://engine/objects/Pulsing_Tint/PulsingTint.tscn")
 
 
-var sMap = [
-	[0,0], 
-	[1,0], 
-	[2,0], 
-	[3,0], 
-	[4,0], 
-	[5,0], 
-	[6,0], 
-	[7,0], 
-	[11,0], 
-	[12,0], 
-	[13,0], 
-	[14,0], 
-	[15,0], 
-	[16,0], 
-	[17,0], 
-	[18,0], 
-	[0,1], 
-	[0,2], 
-	[0,3], 
-	[0,4], 
-	[0,8], 
-	[0,9], 
-	[0,10], 
-	[0,11], 
-	[0,12],
-	[1,12], 
-	[2,12], 
-	[3,12], 
-	[4,12], 
-	[5,12], 
-	[6,12], 
-	[7,12], 
-	[11,12], 
-	[12,12], 
-	[13,12], 
-	[14,12], 
-	[15,12], 
-	[16,12], 
-	[17,12], 
-	[18,12], 
-	[18,1], 
-	[18,2], 
-	[18,3], 
-	[18,4], 
-	[18,8], 
-	[18,9], 
-	[18,10],
-	[18,11]
-]
-
-var shooterMap = [
-	[3,3],
-	[3,9],
-	[15,3],
-	[15,9]
-]
+var sMap 
+var shooterMap
 
 var tileMap
 var statics
@@ -72,6 +17,11 @@ var entities
 #var stepper
 var player
 var tint
+
+func init():
+	var roomLayout = Global.rlMap[str(Global.rlMapIndex)].instance()
+	sMap=roomLayout.get_node("patternStatic").get_used_cells()
+	shooterMap=roomLayout.get_node("patternShooter").get_used_cells()
 
 func _ready():
 	tileMap = tilemapPF.instance()

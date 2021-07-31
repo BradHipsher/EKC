@@ -1,14 +1,52 @@
 extends Node
 
+## Room Layout Preloads
+var rlDefault = preload("res://main/RoomLayouts/rlDefault.tscn")
+var rlDKeyRoom = preload("res://main/RoomLayouts/rlDKeyRoom.tscn")
+var rlDRCorner = preload("res://main/RoomLayouts/rlDRCorner.tscn")
+var rlEnter = preload("res://main/RoomLayouts/rlEnter.tscn")
+var rlExit = preload("res://main/RoomLayouts/rlExit.tscn")
+var rlKnight = preload("res://main/RoomLayouts/rlKnight.tscn")
+var rlLDCorner = preload("res://main/RoomLayouts/rlLDCorner.tscn")
+var rlLFunnel = preload("res://main/RoomLayouts/rlLFunnel.tscn")
+var rlLKeyRoom = preload("res://main/RoomLayouts/rlLKeyRoom.tscn")
+var rlLRGauntlet = preload("res://main/RoomLayouts/rlLRGauntlet.tscn")
+var rlLRZigZag = preload("res://main/RoomLayouts/rlLRZigZag.tscn")
+var rlLTCorner = preload("res://main/RoomLayouts/rlLTCorner.tscn")
+var rlRFunnel = preload("res://main/RoomLayouts/rlRFunnel.tscn")
+var rlRKeyRoom = preload("res://main/RoomLayouts/rlRKeyRoom.tscn")
+var rlTDGauntlet = preload("res://main/RoomLayouts/rlTDGauntlet.tscn")
+var rlTDZigZag = preload("res://main/RoomLayouts/rlTDZigZag.tscn")
+var rlTKeyRoom = preload("res://main/RoomLayouts/rlTKeyRoom.tscn")
+var rlTRCorner = preload("res://main/RoomLayouts/rlTRCorner.tscn")
+
+var rlMapIndex : Vector2 = Vector2(0,0)
+
+var rlMap = {
+	'(0, 0)' : rlEnter,
+	"(0, 1)" : rlTRCorner,
+	"(0, 2)" : rlRKeyRoom,
+	"(1, 1)" : rlLRGauntlet,
+	"(1, 2)" : rlLRZigZag,
+	"(2, 1)" : rlLDCorner,
+	"(2, 2)" : rlDefault,
+	"(2, 3)" : rlRFunnel,
+	"(2, 4)" : rlExit,
+	"(3, 0)" : rlDRCorner,
+	"(3, 1)" : rlTDZigZag,
+	"(3, 2)" : rlLFunnel,
+	"(3, 3)" : rlKnight,
+	"(3, 4)" : rlTDGauntlet,
+	"(3, 5)" : rlTKeyRoom,
+	"(4, 0)" : rlLKeyRoom,
+	"(4, 2)" : rlDKeyRoom,
+	"(4, 3)" : rlLTCorner
+	
+	
+}
+
 ## Music Preloads
 var music_preloads = {
-	"9mm" : {
-		"file" : load(add_mus_pth("9mm")),
-		"bpm" : 130.0,
-		"offset" : 0.00,
-		#"offset" : 0.22,
-		"step_map" : load_mus_dat("9mm")
-	},
 	
 	"JazzLoop" : {
 		"file" : load(add_mus_pth("JazzLoop")),
@@ -29,7 +67,7 @@ var music_preloads = {
 	"level_2" : {
 		"file" : load(add_mus_pth("level_2")),
 		"bpm" : 120.0,
-		"offset" : 0.1,
+		"offset" : 0.0,
 		#"offset" : 0.22,
 		"step_map" : {}
 	},
@@ -37,7 +75,7 @@ var music_preloads = {
 	"level_3" : {
 		"file" : load(add_mus_pth("level_3")),
 		"bpm" : 140.0,
-		"offset" : 0.1,
+		"offset" : 0.0,
 		#"offset" : 0.22,
 		"step_map" : {}
 	},
@@ -45,7 +83,7 @@ var music_preloads = {
 	"level_4" : {
 		"file" : load(add_mus_pth("level_4")),
 		"bpm" : 160.0,
-		"offset" : 0.1,
+		"offset" : 0.0,
 		#"offset" : 0.22,
 		"step_map" : {}
 	},
@@ -53,7 +91,7 @@ var music_preloads = {
 	"level_5" : {
 		"file" : load(add_mus_pth("level_5")),
 		"bpm" : 180.0,
-		"offset" : 0.1,
+		"offset" : 0.0,
 		#"offset" : 0.22,
 		"step_map" : {}
 	},

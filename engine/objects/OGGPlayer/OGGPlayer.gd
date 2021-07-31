@@ -19,14 +19,14 @@ var step_map : Dictionary
 var mspb : float 
 var start_play : float
 
-func init(song_nm : String):
+func init(song_nm : String, start_at:float = 0.0):
 	song_name = song_nm
 	sound_stream = Global.music_preloads[song_name]["file"]
 	bpm = Global.music_preloads[song_name]["bpm"]
 	offset = Global.music_preloads[song_name]["offset"]
 	step_map = Global.music_preloads[song_name]["step_map"]
 	mspb = 60000.0 / bpm
-	start_play = 0.0
+	start_play = start_at
 
 func _ready():
 	time_begin = OS.get_ticks_usec()
