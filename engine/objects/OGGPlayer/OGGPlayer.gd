@@ -32,13 +32,12 @@ func _ready():
 	time_begin = OS.get_ticks_usec()
 	time_delay = AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency()
 	emit_signal("track_info", song_name, mspb, offset, step_map)
-	play_sound()
 
 func _process(delta):
 	time = (OS.get_ticks_usec() - time_begin) / 1000000.0
 	time -= time_delay
 	#time = max(0,time)
-	if time > beat * 60.0 / bpm + offset:
+	if time > beat * 60.0 / bpm + offset + Profile.offset:
 		beat()
 	emit_signal("tick",beat,time)
 

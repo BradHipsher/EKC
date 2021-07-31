@@ -128,7 +128,3 @@ func _on_bullet_collide(contacted):
 	if contacted == player:
 		print("ouch")
 
-func _unhandled_key_input(event):
-	if event.is_action_pressed("dev1"):
-		Global.key_change = min(Global.key_change + 1, Global.key_change_tint.size() - 1)
-

@@ -26,7 +26,7 @@ __meta__ = {
 margin_right = 1216.0
 margin_bottom = 832.0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="vbox" type="VBoxContainer" parent="MarginContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -35,9 +35,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer"]
+[node name="begin" type="Button" parent="MarginContainer/Panel/vbox"]
 margin_right = 1216.0
-margin_bottom = 832.0
+margin_bottom = 274.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
@@ -46,4 +46,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/Button" to="." method="_on_Button_pressed"]
+[node name="calibrate" type="Button" parent="MarginContainer/Panel/vbox"]
+margin_top = 278.0
+margin_right = 1216.0
+margin_bottom = 553.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "CALIBRATE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit" type="Button" parent="MarginContainer/Panel/vbox"]
+margin_top = 557.0
+margin_right = 1216.0
+margin_bottom = 832.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "QUIT TO DESKTOP"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[connection signal="pressed" from="MarginContainer/Panel/vbox/begin" to="." method="_on_begin_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/vbox/calibrate" to="." method="_on_calibrate_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/vbox/quit" to="." method="_on_quit_pressed"]

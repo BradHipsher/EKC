@@ -5,7 +5,7 @@ var music_preloads = {
 	"9mm" : {
 		"file" : load(add_mus_pth("9mm")),
 		"bpm" : 130.0,
-		"offset" : 0.0,
+		"offset" : 0.00,
 		#"offset" : 0.22,
 		"step_map" : load_mus_dat("9mm")
 	},
@@ -13,10 +13,50 @@ var music_preloads = {
 	"JazzLoop" : {
 		"file" : load(add_mus_pth("JazzLoop")),
 		"bpm" : 112.0,
-		"offset" : 0.0,
+		"offset" : 0.00,
 		#"offset" : 0.22,
 		"step_map" : {}
-	}
+	},
+	
+	"level_1" : {
+		"file" : load(add_mus_pth("level_1")),
+		"bpm" : 100.0,
+		"offset" : 0.1,
+		#"offset" : 0.22,
+		"step_map" : {}
+	},
+	
+	"level_2" : {
+		"file" : load(add_mus_pth("level_2")),
+		"bpm" : 120.0,
+		"offset" : 0.1,
+		#"offset" : 0.22,
+		"step_map" : {}
+	},
+	
+	"level_3" : {
+		"file" : load(add_mus_pth("level_3")),
+		"bpm" : 140.0,
+		"offset" : 0.1,
+		#"offset" : 0.22,
+		"step_map" : {}
+	},
+	
+	"level_4" : {
+		"file" : load(add_mus_pth("level_4")),
+		"bpm" : 160.0,
+		"offset" : 0.1,
+		#"offset" : 0.22,
+		"step_map" : {}
+	},
+	
+	"level_5" : {
+		"file" : load(add_mus_pth("level_5")),
+		"bpm" : 180.0,
+		"offset" : 0.1,
+		#"offset" : 0.22,
+		"step_map" : {}
+	},
 }
 
 var mspb

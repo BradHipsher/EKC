@@ -23,6 +23,8 @@ Profile="*res://main/scripts/Profile.gd"
 
 window/size/width=1216
 window/size/height=832
+window/size/resizable=false
+window/size/borderless=true
 
 [input]
 

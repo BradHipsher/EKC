@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://engine/objects/Pulsing_Tint/PulsingTint.tscn" type="PackedScene" id=1]
+[ext_resource path="res://engine/fonts/BRLNSR.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://main/screens/Calibrate/Calibrate.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 28
+font_data = ExtResource( 2 )
+
+[node name="Calibrate" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="container"]
+margin_right = 1216.0
+margin_bottom = 832.0
+
+[node name="vbox" type="VBoxContainer" parent="container/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="calibrateLabel" type="Label" parent="container/Panel/vbox"]
+margin_right = 1216.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 1 )
+text = "Calibrate Good Times"
+align = 1
+
+[node name="spacer" type="MarginContainer" parent="container/Panel/vbox"]
+margin_top = 60.0
+margin_right = 1216.0
+margin_bottom = 701.0
+size_flags_vertical = 3
+
+[node name="PulsingTint" parent="container/Panel/vbox/spacer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1216.0
+margin_bottom = 641.0
+
+[node name="songOffsetLabel" type="Label" parent="container/Panel/vbox"]
+margin_top = 705.0
+margin_right = 1216.0
+margin_bottom = 728.0
+custom_fonts/font = SubResource( 2 )
+text = "0 ms"
+align = 1
+
+[node name="offsetSlider" type="HSlider" parent="container/Panel/vbox"]
+margin_top = 732.0
+margin_right = 1216.0
+margin_bottom = 748.0
+min_value = -0.5
+max_value = 0.5
+step = 0.002
+
+[node name="setOffset" type="Button" parent="container/Panel/vbox"]
+margin_top = 752.0
+margin_right = 1216.0
+margin_bottom = 790.0
+custom_fonts/font = SubResource( 3 )
+text = "RESET SONG TO OFFSET"
+
+[node name="submit" type="Button" parent="container/Panel/vbox"]
+margin_top = 794.0
+margin_right = 1216.0
+margin_bottom = 832.0
+custom_fonts/font = SubResource( 3 )
+text = "SUBMIT"
+
+[connection signal="value_changed" from="container/Panel/vbox/offsetSlider" to="." method="_on_offsetSlider_value_changed"]
+[connection signal="pressed" from="container/Panel/vbox/setOffset" to="." method="_on_setOffset_pressed"]
+[connection signal="pressed" from="container/Panel/vbox/submit" to="." method="_on_submit_pressed"]
