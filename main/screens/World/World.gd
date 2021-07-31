@@ -2,6 +2,8 @@ extends Node2D
 
 const roomPF = preload("res://main/screens/Room/Room.tscn")
 
+var keysCollected = []
+
 var level_1
 var level_2
 var level_3
@@ -29,7 +31,7 @@ func _ready():
 	Global.key_change = 0
 	
 	room = roomPF.instance()
-	room.init()
+	room.init(keysCollected)
 	add_child(room)
 	
 	level_1 = sound_direct.instance()
@@ -66,7 +68,7 @@ func nextRoom(dir):
 	
 	room.queue_free()
 	room = roomPF.instance()
-	room.init()
+	room.init(keysCollected)
 	add_child(room)
 	if dir == "Left":
 		room.player.position = Vector2(18*64+32, 6*64+32)
@@ -101,6 +103,11 @@ func key_change():
 	#level.queue_free()
 	#assign curr_level_name to new level name
 	curr_level_name = next_level_name_map[curr_level_name]
+
+func add_key():
+	var key_sprite = TextureRect.new()
+	key_sprite.texture = load("res://engine/images/key_white.png")
+	get_node("ui/hbox").add_child(key_sprite)
 
 func _on_OGGPlayer_pulse(beat_send, time_send):
 	room.pulse(beat_send, time_send)

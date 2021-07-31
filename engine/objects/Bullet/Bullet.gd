@@ -5,7 +5,7 @@ var dir
 var startPos
 var roomParent
 
-const pxpb:float = 64.0 * 4.0 #px/beat
+const pxpb:float = 64.0 * 2.0 #px/beat
 
 func _ready():
 	roomParent = get_parent().get_parent()

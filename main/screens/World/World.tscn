@@ -24,4 +24,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="hbox" type="HBoxContainer" parent="ui"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="ui/exitToMenu" to="." method="_on_exitToMenu_pressed"]
