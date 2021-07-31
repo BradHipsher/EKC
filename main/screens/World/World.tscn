@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main/screens/World/World.gd" type="Script" id=1]
 [ext_resource path="res://engine/fonts/BRLNSR.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://engine/images/healthbarFill.png" type="Texture" id=3]
+[ext_resource path="res://engine/images/healthbarOutline.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 36
 font_data = ExtResource( 2 )
 
 [node name="World" type="Node2D"]
@@ -24,9 +34,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hbox" type="HBoxContainer" parent="ui"]
+[node name="keybox" type="HBoxContainer" parent="ui"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="healthbar" type="TextureProgress" parent="ui"]
 margin_right = 40.0
 margin_bottom = 40.0
+value = 100.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="instructions" type="RichTextLabel" parent="ui"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 1152.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 1088, 192 )
+custom_fonts/normal_font = SubResource( 2 )
+text = "Exit with as many keys as you can! There are 4 in total. 
+
+Be careful, every key (change) makes the game more difficult!
+
+Control character with WASD & IJKL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exitLeft" type="RichTextLabel" parent="ui"]
+margin_left = 128.0
+margin_top = 448.0
+margin_right = 384.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 256, 256 )
+custom_fonts/normal_font = SubResource( 3 )
+text = "Exit with the keys you have?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exitRight" type="RichTextLabel" parent="ui"]
+margin_left = 832.0
+margin_top = 448.0
+margin_right = 1088.0
+margin_bottom = 704.0
+rect_min_size = Vector2( 256, 256 )
+custom_fonts/normal_font = SubResource( 3 )
+text = "Or return to collect the others?"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -29,6 +29,20 @@ var room
 
 func _ready():
 	Global.key_change = 0
+	keysCollected = []
+	Global.rlMapIndex = Vector2(0,0)
+	
+	if Global.rlMapIndex == Vector2(0,0):
+		get_node("ui/instructions").visible = true
+	else:
+		get_node("ui/instructions").visible = false
+	
+	if Global.rlMapIndex == Vector2(2,4):
+		get_node("ui/exitLeft").visible = true
+		get_node("ui/exitRight").visible = true
+	else:
+		get_node("ui/exitLeft").visible = false
+		get_node("ui/exitRight").visible = false
 	
 	room = roomPF.instance()
 	room.init(keysCollected)
@@ -65,6 +79,22 @@ func nextRoom(dir):
 	if dir == "Down": roomVec = Vector2.DOWN
 	if dir == "Up": roomVec = Vector2.UP
 	Global.rlMapIndex = Global.rlMapIndex + roomVec
+	
+	if Global.rlMapIndex == Vector2(0,0):
+		get_node("ui/instructions").visible = true
+	else:
+		get_node("ui/instructions").visible = false
+	
+	if Global.rlMapIndex == Vector2(2,4):
+		get_node("ui/exitLeft").visible = true
+		get_node("ui/exitRight").visible = true
+	else:
+		get_node("ui/exitLeft").visible = false
+		get_node("ui/exitRight").visible = false
+	
+	if Global.rlMapIndex == Vector2(2,5):
+		Global.change_screen_immediate("WinScreen")
+		return
 	
 	room.queue_free()
 	room = roomPF.instance()
@@ -107,7 +137,10 @@ func key_change():
 func add_key():
 	var key_sprite = TextureRect.new()
 	key_sprite.texture = load("res://engine/images/key_white.png")
-	get_node("ui/hbox").add_child(key_sprite)
+	get_node("ui/keybox").add_child(key_sprite)
+
+func game_over():
+	Global.change_screen_immediate("LoseScreen")
 
 func _on_OGGPlayer_pulse(beat_send, time_send):
 	room.pulse(beat_send, time_send)

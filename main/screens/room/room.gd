@@ -93,7 +93,10 @@ func track_signal(song_name, mspb, off, sm):
 
 func _on_bullet_collide(contacted):
 	if contacted == player:
-		print("ouch")
+		var hb = get_parent().get_node("ui/healthbar")
+		hb.value = hb.value - 1
+		if hb.value == 0:
+			get_parent().game_over()
 
 func _on_key_collide(contacted):
 	if contacted == player:
